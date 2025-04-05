@@ -1,0 +1,542 @@
+{% load static %}
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Database</title>
+    {% include 'links.html' %}
+
+</head>
+<body>
+    
+    <h1>Total number of doctors</h1>
+    <p> {{ total_docs }} </p>
+
+    <h1>Total number of paients</h1>
+    <p> {{ total_patients }} </p>
+
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Admin System</title>
+  <link rel="stylesheet" href="{% static 'css/style-home.css' %}">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  {% include 'links.html' %}
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <!-- <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Admin Panel</h2>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li>
+              <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+            </li>
+            <li class="active">
+              <a href="customers.html"><i class="fas fa-users"></i> Customers</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-shopping-cart"></i> Orders</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-box"></i> Products</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-chart-bar"></i> Analytics</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <div class="user-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="user-details">
+              <p class="user-name">Admin User</p>
+              <p class="user-email">admin@example.com</p>
+            </div>
+          </div>
+        </div>
+      </aside> -->
+
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Admin Panel</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+            <li class="active" >
+                <a href="{% url 'home'  %}"><i class="fas fa-home"></i> Home</a>
+              </li>
+              <li>
+                <a href="{% url 'home'  %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+              </li>
+              <li>
+                <a href="{% url 'doctors_view'  %}"><i class="fas fa-stethoscope"></i> Doctors</a>
+              </li>
+              <li>
+                <a href="{% url 'patients_view' %}"><i class="fas fa-user"></i> Patients</a>
+              </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-details">
+            <p class="user-name">Admin User</p>
+            <p class="user-email">admin@example.com</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-toggle" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+        <h1 class="site-title">Simple Admin System</h1>
+        <div class="header-actions">
+          <button class="icon-button">
+            <i class="fas fa-cog"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <div class="dashboard-content">
+        <div class="page-header">
+          <h1>Welcome to Dashboard</h1>
+          <div class="breadcrumb">
+            <a href="#">Home</a> / Dashboard
+          </div>
+        </div>
+
+        <div class="system-info">
+          <h2>Simple Admin System</h2>
+          <p class="attribution">done by Ayati ogochukwu</p>
+        </div>
+
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <h3>Doctors</h3>
+              <i class="fas fa-stethoscope"></i>
+            </div>
+            <div class="stat-card-content">
+              <p class="stat-number">{{ total_docs }} </p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <h3>Patients</h3>
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="stat-card-content">
+              <p class="stat-number">{{ total_patients }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Simple toggle for mobile menu
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      document.querySelector('.sidebar').classList.toggle('active');
+    });
+  </script>
+
+
+<!-- <style>
+
+    /* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+/* .sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.sidebar-nav ul li {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.sidebar-nav ul li a i {
+  margin-right: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.sidebar-nav ul li:hover a {
+  background-color: #f5f5f5;
+}
+
+.sidebar-nav ul li.active a {
+  background-color: #f0f0f0;
+  font-weight: 500;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+}
+
+.user-details {
+  font-size: 0.85rem;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+.user-email {
+  color: #666;
+  font-size: 0.75rem;
+} */
+
+
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.sidebar-nav ul li {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.sidebar-nav ul li a i {
+  margin-right: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.sidebar-nav ul li:hover a {
+  background-color: #f5f5f5;
+}
+
+.sidebar-nav ul li.active a {
+  background-color: #4361ee;
+  color: white;
+  font-weight: 500;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+}
+
+.user-details {
+  font-size: 0.85rem;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+.user-email {
+  color: #666;
+  font-size: 0.75rem;
+}
+
+
+
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  justify-content: space-between;
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.site-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.icon-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.breadcrumb a {
+  color: #333;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.system-info {
+  margin-bottom: 1.5rem;
+}
+
+.system-info h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.attribution {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Stat Cards */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card-header h3 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.stat-card-header i {
+  color: #666;
+  font-size: 1rem;
+}
+
+.stat-number {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .stat-cards {
+    grid-template-columns: 1fr;
+  }
+}
+</style> -->
+
+</body>
+</html>
