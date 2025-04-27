@@ -4,14 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create doctor</title>
+    {% include 'links.html' %}
 </head>
 <body>
-    
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit"> save </button>
-
+    <div class="container mt-5">
+        <div class="row justify-content-center" class="row justify-content-center" >
+          <div class="col-md-6">
+            <div class="card shadow p-4">
+              <h4 class="mb-4 text-center">Add Doctor</h4>
+              <form action="" method="post">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {# {{ form.phone.error }} #}
+                </div>
+                <button type="submit" class="btn btn-primary"> save </button>
+             </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
 </body>
 </html>
+
+<style>
+  ul.errorlist {
+  display: none;
+}
+</style>

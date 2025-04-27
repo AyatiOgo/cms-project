@@ -4,7 +4,7 @@ from django.db import models
 class Doctors(models.Model):
     name = models.CharField(max_length=250)
     email = models.EmailField(max_length=250)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=25)
     image = models.ImageField(max_length=250, null=True, blank= True)
     class Meta:
         db_table = "Doctors"
@@ -18,8 +18,8 @@ class Doctors(models.Model):
 class Patients(models.Model):
     name = models.CharField(max_length=250)
     email = models.EmailField(max_length=250)
-    phone = models.IntegerField()
-    image = models.ImageField(max_length=250)
+    phone = models.CharField(max_length=25)
+    image = models.ImageField(max_length=250, null=True, blank=True)
     doctor = models.ForeignKey(Doctors, on_delete= models.CASCADE)
     class Meta:
         db_table = "Patients"
